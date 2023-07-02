@@ -1,0 +1,40 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  db:
+    image: postgres:15.0
+    # volumes:
+    #   - ~/volumes/jhipster/baseapi/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:5432:5432
+#  app:
+#    image: native.quantum.app
+#    build: .
+#    command: /workdir/auth-final-2023
+#    # volumes:
+#    #   - ~/volumes/jhipster/baseapi/postgresql/:/var/lib/postgresql/data/
+#    environment:
+#      - PGHOST=db
+#      - PGPORT=5432
+#      - PGDATABASE=postgres
+#      - PGUSER=postgres
+#      - PGPASSWORD=postgres
+#    # If you want to expose these ports outside your dev PC,
+#    # remove the "127.0.0.1:" prefix
+#    ports:
+#      - 127.0.0.1:8080:8080
+#    depends_on:
+#      - db
+
+volumes:
+  cache:
+    driver: local
+networks:
+  dockernet:
+    external: true
